@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Protein Test Parameters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #e9ecef;
+            padding: 10px;
+            border-left: 5px solid #0056b3;
+            border-radius: 5px;
+        }
+        .toggle-btn {
+            background: #007bff;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Understanding Protein Test Parameters in Detail</h1>
+        <p>Protein levels in the blood play a crucial role in assessing overall health, liver function, immune system activity, and nutritional status. Below is a deeper look at the different protein test parameters and what they indicate:</p>
+        
+        <div class="section">
+            <h2>Total Protein (g/dL)</h2>
+            <p><strong>Normal Range:</strong> 6.4 – 8.3 g/dL</p>
+            <p>Total protein is the sum of albumin and globulin levels. It reflects liver function, kidney function, and nutritional health.</p>
+            <button class="toggle-btn" onclick="toggleInfo('total-protein')">More Info</button>
+            <div id="total-protein" class="info hidden">
+                <p><strong>Low Total Protein:</strong> May indicate malnutrition, kidney disease, liver dysfunction, or gastrointestinal disorders.</p>
+                <p><strong>High Total Protein:</strong> Could suggest chronic infections, inflammatory diseases, or multiple myeloma.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Albumin (g/dL)</h2>
+            <p><strong>Normal Range:</strong> 3.4 – 5.4 g/dL</p>
+            <p>Albumin is produced by the liver and plays a role in maintaining fluid balance, transporting nutrients, and repairing tissues.</p>
+            <button class="toggle-btn" onclick="toggleInfo('albumin')">More Info</button>
+            <div id="albumin" class="info hidden">
+                <p><strong>Low Albumin:</strong> Suggests liver disease, kidney disease, chronic inflammation, or malnutrition.</p>
+                <p><strong>High Albumin:</strong> Usually rare but can be seen in dehydration.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Importance of Protein Tests</h2>
+            <p>These protein-related blood tests provide valuable insights into liver health, immune function, nutritional deficiencies, and inflammatory conditions. If any of these markers are abnormal, further medical evaluation may be necessary.</p>
+            <button class="toggle-btn" onclick="toggleInfo('importance')">More Info</button>
+            <div id="importance" class="info hidden">
+                <p><strong>When should you get tested?</strong></p>
+                <ul>
+                    <li>If you experience fatigue, swelling, frequent infections, or weight loss.</li>
+                    <li>If you have a history of liver disease, kidney disease, or immune disorders.</li>
+                    <li>As part of routine health check-ups or pre-operative assessments.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleInfo(id) {
+            var element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

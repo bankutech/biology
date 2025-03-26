@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Test Report - Sagnik Mitra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            max-width: 800px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #ddd;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Protein Test Report</h2>
+        <p><strong>Patient Name:</strong> Sagnik Mitra</p>
+        <p><strong>Date of Birth:</strong> <input type="text" id="dob"></p>
+        <p><strong>Medical Record Number:</strong> <input type="text" id="mrn"></p>
+        <p><strong>Date of Collection:</strong> <input type="text" id="collectionDate"></p>
+        <p><strong>Date of Report:</strong> <input type="text" id="reportDate"></p>
+        
+        <table>
+            <tr>
+                <th>Test Name</th>
+                <th>Result</th>
+                <th>Units</th>
+                <th>Reference Range</th>
+                <th>Interpretation</th>
+            </tr>
+            <tr>
+                <td>Total Protein (Serum)</td>
+                <td><input type="text"></td>
+                <td>g/dL</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Albumin (Serum)</td>
+                <td><input type="text"></td>
+                <td>g/dL</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Globulin (Serum)</td>
+                <td><input type="text"></td>
+                <td>g/dL</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Albumin/Globulin (A/G) Ratio</td>
+                <td><input type="text"></td>
+                <td>-</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        
+        <button onclick="exportToSheets()">Export to Sheets</button>
+        
+        <h3>Additional Notes:</h3>
+        <textarea rows="4" cols="50"></textarea>
+        
+        <h3>Laboratory Information:</h3>
+        <p><strong>Laboratory Name:</strong> <input type="text"></p>
+        <p><strong>Laboratory Address:</strong> <input type="text"></p>
+        <p><strong>Contact Information:</strong> <input type="text"></p>
+        
+        <h3>Physician/Ordering Provider:</h3>
+        <p><input type="text"></p>
+    </div>
+    
+    <script>
+        function exportToSheets() {
+            alert('Export functionality will be implemented here.');
+        }
+    </script>
+</body>
+</html>

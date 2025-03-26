@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Form Container */
+        .appointment-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Header */
+        .appointment-form h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #6a11cb;
+        }
+
+        /* Form Labels */
+        .appointment-form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            text-align: left;
+            color: #444;
+        }
+
+        /* Form Inputs */
+        .appointment-form input,
+        .appointment-form select,
+        .appointment-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .appointment-form input:focus,
+        .appointment-form select:focus,
+        .appointment-form textarea:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
+        }
+
+        /* Submit Button */
+        .appointment-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .appointment-form button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .appointment-form {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="appointment-form">
+        <h2>Book Your Appointment</h2>
+        <form id="appointmentForm">
+            <!-- Full Name -->
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <!-- Email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <!-- Appointment Date -->
+            <label for="date">Appointment Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <!-- Appointment Time -->
+            <label for="time">Appointment Time</label>
+            <input type="time" id="time" name="time" required>
+
+            <!-- Service Selection -->
+            <label for="service">Select Service</label>
+            <select id="service" name="service" required>
+                <option value="">Choose a service</option>
+                <option value="consultation">Consultation</option>
+                <option value="checkup">Checkup</option>
+                <option value="surgery">Surgery</option>
+            </select>
+
+            <!-- Additional Notes -->
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Any special requests?"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <script>
+        // Add event listener to the form
+        document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const service = document.getElementById('service').value;
+
+            // Validate inputs (optional but improves user experience)
+            if (!name || !email || !phone || !date || !time || !service) {
+                alert("Please fill out all required fields!");
+                return;
+            }
+
+            // Show confirmation message
+            alert(`🎉 Appointment booked successfully!\n\n📌 Name: ${name}\n📧 Email: ${email}\n📞 Phone: ${phone}\n📅 Date: ${date}\n⏰ Time: ${time}\n💼 Service: ${service}`);
+
+            // Redirect to a confirmation page (Optional)
+            window.location.href = 'BookNow.html';
+        });
+    </script>
+</body>
+</html>

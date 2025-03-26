@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Test Evaluator</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #437b66, #025ef1);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        h3 {
+            color: #3498db;
+            margin-top: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result strong {
+            color: #2c3e50;
+        }
+
+        .health-score {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f6f3;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9ebea;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+    <style>
+        .top-right-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .top-right-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="top-right-button" onclick="location.href='aboutbloodtest.html'">About Blood Test</button>
+</head>
+</head>
+<body>
+    <div class="container">
+        <h2>Blood Test Evaluator</h2>
+        
+        <!-- Liver & Kidney Panel -->
+        <h3>Liver & Kidney Panel</h3>
+        <label for="creatinine">Creatinine:</label>
+        <input type="number" id="creatinine" placeholder="Enter Creatinine value">
+       
+        <label for="gfr">GFR (Estimated):</label>
+        <input type="number" id="gfr" placeholder="Enter GFR value">
+        
+        <label for="urea">Urea / Urea Nitrogen (Blood):</label>
+        <input type="number" id="urea" placeholder="Enter Urea value">
+        
+        <label for="uricAcid">Uric Acid:</label>
+        <input type="number" id="uricAcid" placeholder="Enter Uric Acid value">
+        
+        <label for="ast">AST (SGOT):</label>
+        <input type="number" id="ast" placeholder="Enter AST value">
+        <label for="alt">ALT (SGPT):</label>
+        <input type="number" id="alt" placeholder="Enter ALT value">
+
+        
+        <label for="ggtp">GGTP:</label>
+        <input type="number" id="ggtp" placeholder="Enter GGTP value">
+        <label for="alp">ALP (Alkaline Phosphatase):</label>
+        <input type="number" id="alp" placeholder="Enter ALP value">
+ 
+        <label for="bilirubin">Bilirubin (Total):</label>
+        <input type="number" id="bilirubin" placeholder="Enter Bilirubin value">
+
+        <label for="totalProtein">Total Protein:</label>
+        <input type="number" id="totalProtein" placeholder="Enter Total Protein value">
+        <label for="albumin">Albumin:</label>
+        <input type="number" id="albumin" placeholder="Enter Albumin value">
+        <label for="globulin">Globulin:</label>
+        <input type="number" id="globulin" placeholder="Enter Globulin value">
+        
+        <label for="calcium">Calcium (Total):</label>
+        <input type="number" id="calcium" placeholder="Enter Calcium value">
+        <label for="phosphorus">Phosphorus:</label>
+        <input type="number" id="phosphorus" placeholder="Enter Phosphorus value">
+        
+        <label for="sodium">Sodium:</label>
+        <input type="number" id="sodium" placeholder="Enter Sodium value">
+        <label for="potassium">Potassium:</label>
+        <input type="number" id="potassium" placeholder="Enter Potassium value">
+        <label for="chloride">Chloride:</label>
+        <input type="number" id="chloride" placeholder="Enter Chloride value">
+        
+        <!-- Lipid Profile -->
+        <h3>Lipid Profile</h3>
+        <label for="cholesterol">Total Cholesterol:</label>
+        <input type="number" id="cholesterol" placeholder="Enter Total Cholesterol value">
+        
+        <label for="triglycerides">Triglycerides:</label>
+        <input type="number" id="triglycerides" placeholder="Enter Triglycerides value">
+        
+        <label for="hdl">HDL ("Good" Cholesterol):</label>
+        <input type="number" id="hdl" placeholder="Enter HDL value">
+
+        
+        <label for="ldl">LDL ("Bad" Cholesterol):</label>
+        <input type="number" id="ldl" placeholder="Enter LDL value">
+
+        
+        <label for="nonHdl">Non-HDL Cholesterol:</label>
+        <input type="number" id="nonHdl" placeholder="Enter Non-HDL Cholesterol value">
+
+        <!-- Glucose Test -->
+        <h3>Glucose Test</h3>
+        <label for="glucose">Glucose Fasting:</label>
+        <input type="number" id="glucose" placeholder="Enter Glucose Fasting value">
+        
+        <!-- Vitamin Tests -->
+        <h3>Vitamin Tests</h3>
+        <label for="vitaminB12">Vitamin B12:</label>
+        <input type="number" id="vitaminB12" placeholder="Enter Vitamin B12 value">
+        
+        <label for="vitaminD">Vitamin D:</label>
+        <input type="number" id="vitaminD" placeholder="Enter Vitamin D value">
+        
+        <!-- Thyroid Profile -->
+        <h3>Thyroid Profile</h3>
+        <label for="t3">T3 (Total):</label>
+        <input type="number" id="t3" placeholder="Enter T3 value">
+        <label for="t4">T4 (Total):</label>
+        <input type="number" id="t4" placeholder="Enter T4 value">
+        <label for="tsh">TSH:</label>
+        <input type="number" id="tsh" placeholder="Enter TSH value">
+        
+        <!-- Diabetes Marker -->
+        <h3>Diabetes Marker</h3>
+        <label for="hba1c">HbA1c:</label>
+        <input type="number" id="hba1c" placeholder="Enter HbA1c value">
+        
+        <!-- Buttons and Results -->
+        <button onclick="evaluateBloodTest()">Evaluate</button>
+        
+        <div id="result" class="result"></div>
+        <div id="healthScore" class="result"></div>
+        <div id="recommendations" class="result"></div>
+        <button onclick="bookAppointment()">Book an Appointment</button>
+    </div>
+    
+    <script>
+        function evaluateBloodTest() {
+    let healthScore = 100;
+    let resultText = "";
+    let recommendations = "";
+
+    // Get input values
+    let creatinine = parseFloat(document.getElementById('creatinine').value);
+    let gfr = parseFloat(document.getElementById('gfr').value);
+    let urea = parseFloat(document.getElementById('urea').value);
+    let uricAcid = parseFloat(document.getElementById('uricAcid').value);
+    let ast = parseFloat(document.getElementById('ast').value);
+    let alt = parseFloat(document.getElementById('alt').value);
+    let ggtp = parseFloat(document.getElementById('ggtp').value);
+    let alp = parseFloat(document.getElementById('alp').value);
+    let bilirubin = parseFloat(document.getElementById('bilirubin').value);
+    let totalProtein = parseFloat(document.getElementById('totalProtein').value);
+    let albumin = parseFloat(document.getElementById('albumin').value);
+    let globulin = parseFloat(document.getElementById('globulin').value);
+    let calcium = parseFloat(document.getElementById('calcium').value);
+    let phosphorus = parseFloat(document.getElementById('phosphorus').value);
+    let sodium = parseFloat(document.getElementById('sodium').value);
+    let potassium = parseFloat(document.getElementById('potassium').value);
+    let chloride = parseFloat(document.getElementById('chloride').value);
+    let cholesterol = parseFloat(document.getElementById('cholesterol').value);
+    let triglycerides = parseFloat(document.getElementById('triglycerides').value);
+    let hdl = parseFloat(document.getElementById('hdl').value);
+    let ldl = parseFloat(document.getElementById('ldl').value);
+    let nonHdl = parseFloat(document.getElementById('nonHdl').value);
+    let glucose = parseFloat(document.getElementById('glucose').value);
+    let vitaminB12 = parseFloat(document.getElementById('vitaminB12').value);
+    let vitaminD = parseFloat(document.getElementById('vitaminD').value);
+    let t3 = parseFloat(document.getElementById('t3').value);
+    let t4 = parseFloat(document.getElementById('t4').value);
+    let tsh = parseFloat(document.getElementById('tsh').value);
+    let hba1c = parseFloat(document.getElementById('hba1c').value);
+
+    // Kidney Function
+    if (creatinine > 1.3) {
+        resultText += "High Creatinine detected. Possible causes: Kidney dysfunction, dehydration, high protein diet, muscle breakdown.<br>";
+        healthScore -= 15;
+        recommendations += "Stay hydrated, reduce protein intake, consult a nephrologist.<br>";
+    } else if (creatinine < 0.6) {
+        resultText += "Low Creatinine detected. Possible causes: Muscle loss, malnutrition, liver disease.<br>";
+        healthScore -= 10;
+        recommendations += "Increase protein intake, consult a doctor.<br>";
+        if (creatinine < 0.4) {
+            resultText += "Critical: Very low Creatinine. Immediate consultation with a nephrologist is required.<br>";
+            recommendations += "Consult Nephrologist immediately.<br>";
+        }
+    }
+
+    if (gfr < 60) {
+        resultText += "Low GFR detected. Possible causes: Kidney disease or dysfunction.<br>";
+        healthScore -= 10;
+        recommendations += "Consult a nephrologist, monitor kidney function.<br>";
+        if (gfr < 30) {
+            resultText += "Critical: Very low GFR. Immediate consultation with a nephrologist is required.<br>";
+            recommendations += "Consult Nephrologist immediately.<br>";
+        }
+    } else if (gfr > 120) {
+        resultText += "High GFR detected. Possible causes: Hyperfiltration in early kidney disease.<br>";
+        healthScore -= 5;
+        recommendations += "Monitor kidney function, consult a doctor.<br>";
+    }
+
+    if (urea > 50) {
+        resultText += "High Urea detected. Possible causes: Kidney disease, dehydration, high protein intake.<br>";
+        healthScore -= 10;
+        recommendations += "Stay hydrated, reduce protein intake, consult a doctor.<br>";
+    } else if (urea < 10) {
+        resultText += "Low Urea detected. Possible causes: Malnutrition, liver disease.<br>";
+        healthScore -= 10;
+        recommendations += "Increase protein intake, consult a doctor.<br>";
+        if (urea < 5) {
+            resultText += "Critical: Very low Urea. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    if (uricAcid > 7.0) {
+        resultText += "High Uric Acid detected. Possible causes: Gout, kidney disease, high purine intake.<br>";
+        healthScore -= 10;
+        recommendations += "Reduce purine-rich foods, stay hydrated, consult a doctor.<br>";
+    } else if (uricAcid < 2.0) {
+        resultText += "Low Uric Acid detected. Possible causes: Liver disease, certain medications.<br>";
+        healthScore -= 10;
+        recommendations += "Consult a doctor.<br>";
+        if (uricAcid < 1.0) {
+            resultText += "Critical: Very low Uric Acid. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    // Liver Function
+    if (ast > 40 || alt > 56) {
+        resultText += "High AST/ALT detected. Possible causes: Liver damage (hepatitis, fatty liver, alcohol-related liver disease).<br>";
+        healthScore -= 15;
+        recommendations += "Avoid alcohol, consult a hepatologist.<br>";
+        if (ast > 100 || alt > 100) {
+            resultText += "Critical: Very high AST/ALT. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    if (ggtp > 50 || alp > 120) {
+        resultText += "High GGTP/ALP detected. Possible causes: Liver or bone disorders.<br>";
+        healthScore -= 10;
+        recommendations += "Consult a doctor, monitor liver function.<br>";
+        if (ggtp > 150 || alp > 200) {
+            resultText += "Critical: Very high GGTP/ALP. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    if (bilirubin > 1.2) {
+        resultText += "High Bilirubin detected. Possible causes: Liver disease, hemolysis, bile duct blockage.<br>";
+        healthScore -= 10;
+        recommendations += "Consult a hepatologist.<br>";
+        if (bilirubin > 3.0) {
+            resultText += "Critical: Very high Bilirubin. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    // Protein Levels
+    if (totalProtein < 6.0 || albumin < 3.5 || globulin < 2.0) {
+        resultText += "Low Protein/Albumin/Globulin detected. Possible causes: Malnutrition, liver disease, kidney disease.<br>";
+        healthScore -= 10;
+        recommendations += "Increase protein intake, consult a doctor.<br>";
+        if (totalProtein < 5.0 || albumin < 2.5 || globulin < 1.5) {
+            resultText += "Critical: Very low Protein/Albumin/Globulin. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    } else if (totalProtein > 8.5 || albumin > 5.0 || globulin > 3.5) {
+        resultText += "High Protein/Albumin/Globulin detected. Possible causes: Dehydration, chronic infections, immune disorders.<br>";
+        healthScore -= 10;
+        recommendations += "Stay hydrated, consult a doctor.<br>";
+    }
+
+    // Electrolytes & Minerals
+    if (calcium > 10.5 || phosphorus > 4.5) {
+        resultText += "High Calcium/Phosphorus detected. Possible causes: Overactive parathyroid, vitamin D toxicity.<br>";
+        healthScore -= 10;
+        recommendations += "Consult an endocrinologist.<br>";
+    } else if (calcium < 8.5 || phosphorus < 2.5) {
+        resultText += "Low Calcium/Phosphorus detected. Possible causes: Vitamin D deficiency, kidney disease.<br>";
+        healthScore -= 10;
+        recommendations += "Increase calcium and vitamin D intake, consult a doctor.<br>";
+        if (calcium < 7.0 || phosphorus < 1.5) {
+            resultText += "Critical: Very low Calcium/Phosphorus. Immediate consultation with an endocrinologist is required.<br>";
+            recommendations += "Consult Endocrinologist immediately.<br>";
+        }
+    }
+
+    if (sodium < 135 || sodium > 145 || potassium < 3.5 || potassium > 5.0 || chloride < 98 || chloride > 107) {
+        resultText += "Electrolyte imbalance detected. Possible causes: Dehydration, kidney disease, adrenal issues.<br>";
+        healthScore -= 10;
+        recommendations += "Stay hydrated, consult a doctor.<br>";
+        if (sodium < 130 || sodium > 150 || potassium < 3.0 || potassium > 5.5 || chloride < 95 || chloride > 110) {
+            resultText += "Critical: Severe electrolyte imbalance. Immediate consultation with a nephrologist is required.<br>";
+            recommendations += "Consult Nephrologist immediately.<br>";
+        }
+    }
+
+    // Lipid Profile
+    if (cholesterol > 200) {
+        resultText += "High Cholesterol detected. Possible causes: Heart disease risk, poor diet.<br>";
+        healthScore -= 10;
+        recommendations += "Adopt a low-fat diet, exercise regularly, consult a cardiologist.<br>";
+    } else if (cholesterol < 120) {
+        resultText += "Low Cholesterol detected. Possible causes: Malnutrition, liver disease.<br>";
+        healthScore -= 10;
+        recommendations += "Increase healthy fat intake, consult a doctor.<br>";
+        if (cholesterol < 100) {
+            resultText += "Critical: Very low Cholesterol. Immediate consultation with a hepatologist is required.<br>";
+            recommendations += "Consult Hepatologist immediately.<br>";
+        }
+    }
+
+    if (triglycerides > 150) {
+        resultText += "High Triglycerides detected. Possible causes: Diabetes, metabolic syndrome, poor diet.<br>";
+        healthScore -= 10;
+        recommendations += "Reduce sugar and fat intake, exercise regularly.<br>";
+    } else if (triglycerides < 50) {
+        resultText += "Low Triglycerides detected. Possible causes: Malnutrition, hyperthyroidism.<br>";
+        healthScore -= 10;
+        recommendations += "Increase healthy fat intake, consult a doctor.<br>";
+        if (triglycerides < 30) {
+            resultText += "Critical: Very low Triglycerides. Immediate consultation with an endocrinologist is required.<br>";
+            recommendations += "Consult Endocrinologist immediately.<br>";
+        }
+    }
+
+    if (hdl < 40) {
+        resultText += "Low HDL detected. Possible causes: Increased risk of heart disease.<br>";
+        healthScore -= 10;
+        recommendations += "Exercise regularly, consume healthy fats.<br>";
+        if (hdl < 30) {
+            resultText += "Critical: Very low HDL. Immediate consultation with a cardiologist is required.<br>";
+            recommendations += "Consult Cardiologist immediately.<br>";
+        }
+    }
+
+    if (ldl > 130) {
+        resultText += "High LDL detected. Possible causes: Increased risk of atherosclerosis and heart disease.<br>";
+        healthScore -= 10;
+        recommendations += "Adopt a low-fat diet, consult a cardiologist.<br>";
+    } else if (ldl < 50) {
+        resultText += "Low LDL detected. Possible causes: Malnutrition, hyperthyroidism.<br>";
+        healthScore -= 10;
+        recommendations += "Increase healthy fat intake, consult a doctor.<br>";
+        if (ldl < 30) {
+            resultText += "Critical: Very low LDL. Immediate consultation with a cardiologist is required.<br>";
+            recommendations += "Consult Cardiologist immediately.<br>";
+        }
+    }
+
+    if (nonHdl > 160) {
+        resultText += "High Non-HDL Cholesterol detected. Possible causes: Increased heart disease risk.<br>";
+        healthScore -= 10;
+        recommendations += "Adopt a low-fat diet, exercise regularly.<br>";
+    }
+
+    // Glucose Test
+    if (glucose > 100) {
+        resultText += "High Glucose detected. Possible causes: Diabetes, insulin resistance.<br>";
+        healthScore -= 20;
+        recommendations += "Reduce sugar intake, exercise regularly, monitor glucose levels.<br>";
+    } else if (glucose < 70) {
+        resultText += "Low Glucose detected. Possible causes: Hypoglycemia, adrenal insufficiency.<br>";
+        healthScore -= 10;
+        recommendations += "Consume small, frequent meals, consult a doctor.<br>";
+        if (glucose < 50) {
+            resultText += "Critical: Very low Glucose. Immediate consultation with an endocrinologist is required.<br>";
+            recommendations += "Consult Endocrinologist immediately.<br>";
+        }
+    }
+
+    // Vitamin Tests
+    if (vitaminB12 < 200) {
+        resultText += "Low Vitamin B12 detected. Possible causes: Anemia, neurological issues.<br>";
+        healthScore -= 10;
+        recommendations += "Increase dairy, eggs, meat, and fortified cereals.<br>";
+        if (vitaminB12 < 150) {
+            resultText += "Critical: Very low Vitamin B12. Immediate consultation with a hematologist is required.<br>";
+            recommendations += "Consult Hematologist immediately.<br>";
+        }
+    }
+
+    if (vitaminD < 30) {
+        resultText += "Low Vitamin D detected. Possible causes: Weak bones, immune dysfunction.<br>";
+        healthScore -= 10;
+        recommendations += "Increase sun exposure, consume fortified foods, consider supplements.<br>";
+        if (vitaminD < 20) {
+            resultText += "Critical: Very low Vitamin D. Immediate consultation with an endocrinologist is required.<br>";
+            recommendations += "Consult Endocrinologist immediately.<br>";
+        }
+    } else if (vitaminD > 100) {
+        resultText += "High Vitamin D detected. Possible causes: Toxicity (rare).<br>";
+        healthScore -= 10;
+        recommendations += "Reduce vitamin D intake, consult a doctor.<br>";
+    }
+
+    // Thyroid Profile
+    if (t3 > 200 || t4 > 12 || tsh < 0.4) {
+        resultText += "Hyperthyroidism detected. Possible causes: Overactive thyroid.<br>";
+        healthScore -= 15;
+        recommendations += "Consult an endocrinologist.<br>";
+    } else if (t3 < 80 || t4 < 4.5 || tsh > 4.5) {
+        resultText += "Hypothyroidism detected. Possible causes: Underactive thyroid.<br>";
+        healthScore -= 15;
+        recommendations += "Consult an endocrinologist.<br>";
+        if (t3 < 50 || t4 < 2.0 || tsh > 10) {
+            resultText += "Critical: Severe Hypothyroidism. Immediate consultation with an endocrinologist is required.<br>";
+            recommendations += "Consult Endocrinologist immediately.<br>";
+        }
+    }
+
+    // Diabetes Marker
+    if (hba1c > 6.5) {
+        resultText += "High HbA1c detected. Possible causes: Poor blood sugar control (diabetes).<br>";
+        healthScore -= 20;
+        recommendations += "Monitor blood sugar levels, consult a diabetologist.<br>";
+    } else if (hba1c < 4.0) {
+        resultText += "Low HbA1c detected. Possible causes: Rare, but can be seen in some anemias.<br>";
+        healthScore -= 10;
+        recommendations += "Consult a doctor.<br>";
+        if (hba1c < 3.0) {
+            resultText += "Critical: Very low HbA1c. Immediate consultation with a hematologist is required.<br>";
+            recommendations += "Consult Hematologist immediately.<br>";
+        }
+    }
+
+    // Display results
+    if (resultText === "") {
+        resultText = "Your blood test values appear normal.";
+    }
+
+    document.getElementById('result').innerHTML = "<strong>Analysis:</strong><br>" + resultText;
+    document.getElementById('healthScore').innerHTML = "<strong>Health Score:</strong> " + healthScore + "/100";
+    document.getElementById('recommendations').innerHTML = "<strong>Recommendations:</strong><br>" + recommendations;
+}
+        
+        function bookAppointment() {
+            alert("Redirecting to specialist appointment booking...");
+            window.location.href = "bookAppointment.html";
+        }
+    </script>
+</body>
+</html>

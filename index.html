@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Analyzer</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif;
+            display: flex; 
+            height: 100vh;
+            align-items: center; 
+            justify-content: center; 
+            background-image: url('health.jpeg'); /* Ensure this file exists */
+            background-size: cover;
+            background-position: center;
+            margin: 0; 
+            overflow: hidden;
+        }
+
+        .container { 
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 50px; 
+            border-radius: 30px; 
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); 
+            animation: fadeInContainer 2s ease-in-out forwards;
+        }
+
+        h1 { 
+            color: #ff4500; 
+            text-shadow: 0 4px 8px rgba(255, 69, 0, 0.7); 
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease-in-out;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+            animation: fadeInText 2s ease-in-out;
+        }
+
+        .button {
+            display: block;
+            width: 250px;
+            color: white;
+            padding: 15px 30px;
+            margin: 15px auto;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button colors */
+        .blood-btn {
+            background: linear-gradient(135deg, #ff4e50, #ff6a00); /* Red */
+        }
+
+        .protein-btn {
+            background: linear-gradient(135deg, #36D1DC, #5B86E5); /* Blue */
+        }
+
+        .calculator-btn {
+            background: linear-gradient(135deg, #11998e, #38ef7d); /* Green */
+        }
+
+        /* Hover Effects */
+        .button:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .blood-btn:hover {
+            background: linear-gradient(135deg, #ff6a00, #ff4e50); 
+        }
+
+        .protein-btn:hover {
+            background: linear-gradient(135deg, #5B86E5, #36D1DC); 
+        }
+
+        .calculator-btn:hover {
+            background: linear-gradient(135deg, #38ef7d, #11998e); 
+        }
+
+        /* Fade-in animation for the container */
+        @keyframes fadeInContainer {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Bounce-in effect for h1 */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Fade-in text animation */
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Health Analyzer</h1>
+        <p>Choose a test to evaluate your health:</p>
+        <button class="button blood-btn" onclick="location.href='blood-test.html'">Blood Test Evaluator</button>
+        <button class="button protein-btn" onclick="location.href='https://v0-protein-test-analysis.vercel.app/'">Protein Report Analyzer</button>
+        <button class="button calculator-btn" onclick="window.open('https://v0-protein-calculator-requirements.vercel.app/', '_blank')">Protein Calculator</button>
+    </div>
+
+</body>
+</html>
