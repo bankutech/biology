@@ -4,20 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Health Test Evaluator</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/three@0.137.5/build/three.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
 
+  <div id="animation-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+
   <!-- Main Login Section -->
-  <div class="login-container">
+  <div class="glass-panel glass-panel-small" style="position: relative; z-index: 2;">
     <div class="login-form">
       <h1>S4AC</h1>
       <p>Please enter your login details</p>
+      
+      <div class="disclaimer-notice" style="font-size: 0.85rem; padding: 10px; margin-bottom: 20px;">
+        <strong>Demo Note:</strong> Client-side authentication is not secure. This is a UI prototype only.
+      </div>
+
       <form id="loginForm">
-        <input type="text" id="s4ac" placeholder="Username" required>
-        <input type="password" id="biology" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <div class="form-group">
+            <input type="text" id="s4ac" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="biology" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-red"><i class="ph ph-sign-in" style="margin-right: 8px;"></i> Login</button>
       </form>
     </div>
   </div>

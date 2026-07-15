@@ -3,110 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein Test Report - Sagnik Mitra</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px gray;
-            max-width: 800px;
-            margin: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #ddd;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <title>Protein Test Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/export.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Protein Test Report</h2>
-        <p><strong>Patient Name:</strong> Sagnik Mitra</p>
-        <p><strong>Date of Birth:</strong> <input type="text" id="dob"></p>
-        <p><strong>Medical Record Number:</strong> <input type="text" id="mrn"></p>
-        <p><strong>Date of Collection:</strong> <input type="text" id="collectionDate"></p>
-        <p><strong>Date of Report:</strong> <input type="text" id="reportDate"></p>
+    <div class="top-right-nav">
+        <button class="btn btn-blue" onclick="location.href='index.html'"><i class="ph ph-house" style="margin-right: 8px;"></i> Dashboard</button>
+    </div>
+
+    <div class="glass-panel scrollable-page">
+        <h2>Protein Test Analyzer</h2>
         
-        <table>
-            <tr>
-                <th>Test Name</th>
-                <th>Result</th>
-                <th>Units</th>
-                <th>Reference Range</th>
-                <th>Interpretation</th>
-            </tr>
-            <tr>
-                <td>Total Protein (Serum)</td>
-                <td><input type="text"></td>
-                <td>g/dL</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td>Albumin (Serum)</td>
-                <td><input type="text"></td>
-                <td>g/dL</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td>Globulin (Serum)</td>
-                <td><input type="text"></td>
-                <td>g/dL</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td>Albumin/Globulin (A/G) Ratio</td>
-                <td><input type="text"></td>
-                <td>-</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-        </table>
+        <div class="disclaimer-notice">
+            <strong>Disclaimer:</strong> This tool is for tracking and educational purposes. It does not replace professional medical advice.
+        </div>
+
+        <div class="result-card">
+            <h3>Patient & Report Details</h3>
+            <div class="form-grid">
+                <div class="form-group"><label>Patient Name:</label><input type="text" id="patientName" placeholder="Enter Name" value="Sagnik Mitra"></div>
+                <div class="form-group"><label>Date of Birth:</label><input type="date" id="dob"></div>
+                <div class="form-group"><label>Date of Collection:</label><input type="date" id="collectionDate"></div>
+                <div class="form-group"><label>Date of Report:</label><input type="date" id="reportDate"></div>
+            </div>
+        </div>
         
-        <button onclick="exportToSheets()">Export to Sheets</button>
+        <div class="result-card">
+            <h3>Protein Markers</h3>
+            <span id="validationError" class="form-error" style="display: none;">Warning: Albumin + Globulin should approximately equal Total Protein.</span>
+            <div class="data-table-container" style="margin-top: 15px;">
+                <table class="data-table">
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Result</th>
+                        <th>Units</th>
+                        <th>Reference Range</th>
+                    </tr>
+                    <tr>
+                        <td>Total Protein (Serum)</td>
+                        <td><input type="number" id="totalProtein" oninput="validateProtein()"></td>
+                        <td>g/dL</td>
+                        <td>6.0 - 8.3</td>
+                    </tr>
+                    <tr>
+                        <td>Albumin (Serum)</td>
+                        <td><input type="number" id="albumin" oninput="validateProtein()"></td>
+                        <td>g/dL</td>
+                        <td>3.5 - 5.0</td>
+                    </tr>
+                    <tr>
+                        <td>Globulin (Serum)</td>
+                        <td><input type="number" id="globulin" oninput="validateProtein()"></td>
+                        <td>g/dL</td>
+                        <td>2.0 - 3.5</td>
+                    </tr>
+                    <tr>
+                        <td>A/G Ratio</td>
+                        <td><input type="number" id="agRatio" placeholder="Auto-calc or manual"></td>
+                        <td>-</td>
+                        <td>1.1 - 2.5</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button class="btn btn-primary" onclick="logEntry()"><i class="ph ph-floppy-disk" style="margin-right: 8px;"></i> Save Entry</button>
+            <button class="btn btn-green" onclick="exportData()"><i class="ph ph-export" style="margin-right: 8px;"></i> Export to CSV</button>
+        </div>
         
-        <h3>Additional Notes:</h3>
-        <textarea rows="4" cols="50"></textarea>
-        
-        <h3>Laboratory Information:</h3>
-        <p><strong>Laboratory Name:</strong> <input type="text"></p>
-        <p><strong>Laboratory Address:</strong> <input type="text"></p>
-        <p><strong>Contact Information:</strong> <input type="text"></p>
-        
-        <h3>Physician/Ordering Provider:</h3>
-        <p><input type="text"></p>
+        <div id="logMessage" style="margin-top: 15px; color: var(--status-good); font-weight: bold; display: none;">Entry saved successfully!</div>
+
     </div>
     
     <script>
-        function exportToSheets() {
-            alert('Export functionality will be implemented here.');
+        // In-memory array for logs
+        let proteinLogs = [];
+
+        // Load from localStorage if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('proteinLogs');
+            if (saved) {
+                try {
+                    proteinLogs = JSON.parse(saved);
+                } catch (e) {
+                    console.error("Could not parse saved logs");
+                }
+            }
+        });
+
+        function validateProtein() {
+            const tp = parseFloat(document.getElementById('totalProtein').value);
+            const alb = parseFloat(document.getElementById('albumin').value);
+            const glob = parseFloat(document.getElementById('globulin').value);
+            const errorSpan = document.getElementById('validationError');
+            
+            if (!isNaN(tp) && !isNaN(alb) && !isNaN(glob)) {
+                // Check if Albumin + Globulin ≈ Total Protein (allow small float diff)
+                if (Math.abs((alb + glob) - tp) > 0.2) {
+                    errorSpan.style.display = 'block';
+                } else {
+                    errorSpan.style.display = 'none';
+                }
+            } else {
+                errorSpan.style.display = 'none';
+            }
+
+            // Auto-calc A/G ratio
+            if (!isNaN(alb) && !isNaN(glob) && glob !== 0) {
+                const agRatio = (alb / glob).toFixed(2);
+                document.getElementById('agRatio').value = agRatio;
+            }
+        }
+
+        function logEntry() {
+            const entry = {
+                PatientName: document.getElementById('patientName').value || 'Unknown',
+                DOB: document.getElementById('dob').value || 'N/A',
+                CollectionDate: document.getElementById('collectionDate').value || new Date().toISOString().split('T')[0],
+                TotalProtein: document.getElementById('totalProtein').value,
+                Albumin: document.getElementById('albumin').value,
+                Globulin: document.getElementById('globulin').value,
+                AGRatio: document.getElementById('agRatio').value
+            };
+
+            proteinLogs.push(entry);
+            localStorage.setItem('proteinLogs', JSON.stringify(proteinLogs));
+
+            const msg = document.getElementById('logMessage');
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        }
+
+        function exportData() {
+            if (proteinLogs.length === 0) {
+                alert("No saved entries to export.");
+                return;
+            }
+            // generateCSV is defined in js/export.js
+            generateCSV(proteinLogs, 'protein_test_report.csv');
         }
     </script>
 </body>

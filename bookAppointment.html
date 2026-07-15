@@ -4,173 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-
-        /* Form Container */
-        .appointment-form {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 380px;
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Form Header */
-        .appointment-form h2 {
-            margin-bottom: 20px;
-            font-size: 26px;
-            color: #6a11cb;
-        }
-
-        /* Form Labels */
-        .appointment-form label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            text-align: left;
-            color: #444;
-        }
-
-        /* Form Inputs */
-        .appointment-form input,
-        .appointment-form select,
-        .appointment-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: 0.3s ease-in-out;
-        }
-
-        .appointment-form input:focus,
-        .appointment-form select:focus,
-        .appointment-form textarea:focus {
-            border-color: #6a11cb;
-            outline: none;
-            box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
-        }
-
-        /* Submit Button */
-        .appointment-form button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .appointment-form button:hover {
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
-            transform: scale(1.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .appointment-form {
-                width: 90%;
-                padding: 20px;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <div class="appointment-form">
+    <div class="top-right-nav">
+        <button class="btn btn-blue" onclick="location.href='index.html'"><i class="ph ph-house" style="margin-right: 8px;"></i> Dashboard</button>
+    </div>
+
+    <div class="glass-panel glass-panel-small scrollable-page" style="margin-top: 50px;">
         <h2>Book Your Appointment</h2>
-        <form id="appointmentForm">
-            <!-- Full Name -->
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <div class="disclaimer-notice">
+            <strong>Note:</strong> This is a simulation. No real booking will be made.
+        </div>
 
-            <!-- Email -->
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <form id="appointmentForm" novalidate>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <span id="nameError" class="form-error" style="display: none;">Name is required.</span>
+            </div>
 
-            <!-- Phone Number -->
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <span id="emailError" class="form-error" style="display: none;">Valid email is required.</span>
+            </div>
 
-            <!-- Appointment Date -->
-            <label for="date">Appointment Date</label>
-            <input type="date" id="date" name="date" required>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit number" required>
+                <span id="phoneError" class="form-error" style="display: none;">Valid 10-digit phone number is required.</span>
+            </div>
 
-            <!-- Appointment Time -->
-            <label for="time">Appointment Time</label>
-            <input type="time" id="time" name="time" required>
+            <div class="form-group">
+                <label for="date">Appointment Date</label>
+                <input type="date" id="date" name="date" required>
+                <span id="dateError" class="form-error" style="display: none;">Please select a future date.</span>
+            </div>
 
-            <!-- Service Selection -->
-            <label for="service">Select Service</label>
-            <select id="service" name="service" required>
-                <option value="">Choose a service</option>
-                <option value="consultation">Consultation</option>
-                <option value="checkup">Checkup</option>
-                <option value="surgery">Surgery</option>
-            </select>
+            <div class="form-group">
+                <label for="time">Appointment Time</label>
+                <input type="time" id="time" name="time" required>
+                <span id="timeError" class="form-error" style="display: none;">Time is required.</span>
+            </div>
 
-            <!-- Additional Notes -->
-            <label for="notes">Additional Notes</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Any special requests?"></textarea>
+            <div class="form-group">
+                <label for="service">Select Service</label>
+                <select id="service" name="service" required style="width: 100%; padding: 15px; border: 2px solid #fff; border-radius: 5px; background: var(--input-bg); color: var(--text-dark); font-size: 1rem;">
+                    <option value="">Choose a service</option>
+                    <option value="Consultation">Consultation</option>
+                    <option value="Checkup">Checkup</option>
+                    <option value="Blood Test">Blood Test</option>
+                    <option value="Protein Analysis">Protein Analysis</option>
+                </select>
+                <span id="serviceError" class="form-error" style="display: none;">Service selection is required.</span>
+            </div>
 
-            <!-- Submit Button -->
-            <button type="submit">Book Now</button>
+            <div class="form-group">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Any special requests?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="ph ph-calendar-check" style="margin-right: 8px;"></i> Book Now</button>
         </form>
     </div>
 
     <script>
-        // Add event listener to the form
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
         document.getElementById('appointmentForm').addEventListener('submit', function (event) {
-            // Prevent the form from submitting
             event.preventDefault();
 
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const service = document.getElementById('service').value;
-
-            // Validate inputs (optional but improves user experience)
-            if (!name || !email || !phone || !date || !time || !service) {
-                alert("Please fill out all required fields!");
-                return;
+            let isValid = true;
+            
+            // Validate Name
+            const name = document.getElementById('name');
+            if (!name.value.trim()) {
+                document.getElementById('nameError').style.display = 'block';
+                name.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+                name.classList.remove('input-error');
             }
 
-            // Show confirmation message
-            alert(`🎉 Appointment booked successfully!\n\n📌 Name: ${name}\n📧 Email: ${email}\n📞 Phone: ${phone}\n📅 Date: ${date}\n⏰ Time: ${time}\n💼 Service: ${service}`);
+            // Validate Email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                email.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+                email.classList.remove('input-error');
+            }
 
-            // Redirect to a confirmation page (Optional)
-            window.location.href = 'BookNow.html';
+            // Validate Phone
+            const phone = document.getElementById('phone');
+            const phoneRegex = /^\\d{10}$/; // simple 10 digit validation
+            if (!phoneRegex.test(phone.value.replace(/\\D/g, ''))) {
+                document.getElementById('phoneError').style.display = 'block';
+                phone.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('phoneError').style.display = 'none';
+                phone.classList.remove('input-error');
+            }
+
+            // Validate Date
+            const date = document.getElementById('date');
+            if (!date.value || date.value < today) {
+                document.getElementById('dateError').style.display = 'block';
+                date.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('dateError').style.display = 'none';
+                date.classList.remove('input-error');
+            }
+
+            // Validate Time
+            const time = document.getElementById('time');
+            if (!time.value) {
+                document.getElementById('timeError').style.display = 'block';
+                time.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('timeError').style.display = 'none';
+                time.classList.remove('input-error');
+            }
+
+            // Validate Service
+            const service = document.getElementById('service');
+            if (!service.value) {
+                document.getElementById('serviceError').style.display = 'block';
+                service.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('serviceError').style.display = 'none';
+                service.classList.remove('input-error');
+            }
+
+            if (isValid) {
+                // Pass form data via URL params
+                const params = new URLSearchParams({
+                    name: name.value,
+                    date: date.value,
+                    time: time.value,
+                    service: service.value
+                });
+                
+                window.location.href = 'BookNow.html?' + params.toString();
+            }
         });
     </script>
 </body>

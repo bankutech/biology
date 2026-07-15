@@ -4,38 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Successfully Updated</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #50b8cd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .success-message {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .success-message h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .success-message p {
-            margin: 10px 0 0;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <div class="success-message">
-        <h1>Success!</h1>
-        <p>Your form has been successfully updated.</p>
+    <div class="glass-panel glass-panel-small" style="text-align: center;">
+        <h1 style="color: var(--accent-green);">Success!</h1>
+        <p id="successMsg">Your appointment has been successfully booked.</p>
+        <button class="btn btn-primary" onclick="location.href='index.html'" style="margin-top: 20px;"><i class="ph ph-house" style="margin-right: 8px;"></i> Return to Dashboard</button>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            const date = params.get('date');
+            const service = params.get('service');
+            
+            if (name && date && service) {
+                document.getElementById('successMsg').innerHTML = 
+                    `Thank you, <strong>${name}</strong>!<br><br>` + 
+                    `Your <strong>${service}</strong> has been tentatively scheduled for <strong>${date}</strong>.`;
+            }
+        });
+    </script>
 </body>
 </html>

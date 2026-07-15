@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Validate credentials (this is a simple example, you should use backend validation for production)
         if (username === 's4ac' && password === 'bio') {
-            // Successful login - Redirect to main page
-            window.location.href = 'main.html';  // Redirect to main.html page
+            // Successful login - Redirect to index.html
+            window.location.href = 'index.html';
         } else {
             // Display an error message if login fails
             alert('Invalid username or password. Please try again.');
