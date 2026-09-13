@@ -1,5 +1,6 @@
-# Health Test Dashboard
+# biology
 
+## Overview
 A comprehensive, modern web application designed for health evaluation and test reporting. The dashboard features a premium, responsive "glassmorphism" user interface with a centralized design system.
 
 ## Features
@@ -57,3 +58,9 @@ The application uses a unified styling approach across all pages:
 - Integrate backend services to persist user logins, health test histories, and booked appointments.
 - Add chart visualizations to map health marker trends over time.
 - Implement the "Export to Sheets" functionality in the Protein Test analyzer.
+
+## Getting Started
+Please refer to the source files for specific installation and usage instructions. Ensure that your local environment meets the standard requirements for the associated technologies.
+
+## Project Structure
+This project is organized into standard directories. Key configuration files and primary source code are located in the root directory.
